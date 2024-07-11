@@ -24,9 +24,8 @@ def check_ticket_availability():
         # Locate the specific button for the GA Tier 2 ticket
         button = driver.find_element(By.XPATH, "//a[@id='general-admission-ga-3-day-ticket-24-2-2-link']")
         
-        # Print button text for debugging
+        # Get button text and check availability
         button_text = button.text.strip()
-        print(f"Button text: {button_text}")
         
         if button_text.lower() != 'coming soon'.lower():
             print("Tickets are available!")
