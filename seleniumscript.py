@@ -5,7 +5,7 @@ from selenium.webdriver.chrome.options import Options
 import time
 
 # Path to your WebDriver
-webdriver_path = 'path/to/chromedriver'
+webdriver_path = './chromedriver'
 
 # URL to check
 url = "https://ultramusicfestival.com/tickets/miami/"
