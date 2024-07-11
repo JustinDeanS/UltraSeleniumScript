@@ -44,7 +44,7 @@ def main():
         if check_ticket_availability():
             break
         # Wait for some time before checking again
-        time.sleep(300)  # Check every 5 minutes
+        time.sleep(5)  # Check every 5 minutes
 
     driver.quit()
 
