@@ -20,17 +20,15 @@ driver = webdriver.Chrome(service=service, options=options)
 def check_ticket_availability():
     driver.get(url)
 
-    # Find the section containing the ticket information
     try:
-        # Locate the elements using the correct XPath or CSS selectors
-        sub_type = driver.find_element(By.XPATH, "//p[@class='sub_type color' and contains(text(), 'Tier 2')]")
-        title = driver.find_element(By.XPATH, "//p[@class='title' and contains(text(), 'GA 3-Day Ticket')]")
-        date = driver.find_element(By.XPATH, "//p[@class='date color' and contains(text(), 'March 28, 29, 30 – 2025')]")
+        # Locate the specific button for the GA Tier 2 ticket
+        button = driver.find_element(By.XPATH, "//a[@id='general-admission-ga-3-day-ticket-24-2-2-link']")
         
-        # Check if the 'COMING SOON' button is replaced with something else (e.g., 'BUY NOW')
-        button = driver.find_element(By.XPATH, "//a[contains(@class, 'tix soon regbtn')]")
+        # Print button text for debugging
+        button_text = button.text.strip()
+        print(f"Button text: {button_text}")
         
-        if button and 'Coming Soon' not in button.text:
+        if button_text.lower() != 'coming soon'.lower():
             print("Tickets are available!")
             return True
         else:
@@ -45,7 +43,6 @@ def check_ticket_availability():
 def main():
     while True:
         if check_ticket_availability():
-            # Send a notification or take further action if tickets are available
             break
         # Wait for some time before checking again
         time.sleep(300)  # Check every 5 minutes
